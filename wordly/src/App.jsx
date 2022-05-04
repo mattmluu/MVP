@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import wordList from './FakeDB'
 import './styles/App.css'
 import Board from './Board.jsx'
+import Letters from './Letters.jsx'
+import Form from './Form.jsx'
 
 function App() {
   const [userInput, setUserInput] = useState('')
@@ -42,7 +44,7 @@ function App() {
         setUserInput(userInput.slice(0, -1))
       }
       if (keyPress === 'ENTER') {
-        handleSubmit()
+        handleEnter()
       }
     }
   }
@@ -50,11 +52,10 @@ function App() {
   useEventListener("keydown", handler)
 
   const changeColor = (coordinate, color) => {
-    //ex: document.getElementById( 'Row2Col2' ).style.backgroundColor = "green"
     document.getElementById(coordinate).style.backgroundColor = color;
   }
 
-  const handleSubmit = () => {
+  const handleEnter = () => {
     if (userInput.length === 5 && guessNumber <= 6) {
       for (let i = 0; i < userInput.length; i++) {
         if (userInput[i] === secretWord[i]) {
@@ -73,19 +74,11 @@ function App() {
   return (
     <div className="App">
       <h1 className="App-title">WORDLY</h1>
-      <header className="App-header">
+      <header className="Main-Content">
 
+        <Letters />
         <Board userInput={userInput} guessNumber={guessNumber}/>
-
-        <motion.button
-          className="Submit-button"
-          type="button"
-          onClick={handleSubmit}
-          whileHover={{ scale:1.1 }}
-          whileTap={{ scale:0.9 }}
-        >
-          Submit Word
-        </motion.button>
+        <Form />
 
       </header>
     </div>

@@ -13,21 +13,21 @@
   padding: 0.5em;
 }
 
-/*
-color: rgb(193, 92, 74);
-color: rgb(114, 164, 123);
-color: rgb(25, 25, );
-*/
-
-.App-header {
+.Main-Content {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Submission {
+  min-width: 20%;
+  max-width: 20%;
+  margin-right: 1em;
 }
 
 .Word {
@@ -55,8 +55,22 @@ color: rgb(25, 25, );
   color: rgb(240, 235, 230);
 }
 
-.App-link {
-  color: #61dafb;
+
+.Letters {
+  display: flex;
+  flex-direction: rows;
+  justify-content: baseline;
+  min-width: 20%;
+  max-width: 20%;
+  margin-left: 2em;
+}
+
+.Letter {
+  margin: .4em;
+  font-size: small;
+  /* background-color: rgb(25, 25, 30); */
+  min-height: 30px;
+  min-width: 30px;
 }
 
 .Submit-button {
@@ -65,7 +79,6 @@ color: rgb(25, 25, );
   font-stretch: expanded;
   font-weight: 500;
   color: rgb(25, 25, 30);
-  margin-bottom: 8em;
   padding: .2em;
   padding-left: 1em;
   padding-right: 1em;
