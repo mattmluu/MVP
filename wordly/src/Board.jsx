@@ -38,8 +38,10 @@ function Board({ userInput, guessNumber }) {
 
     //update state of the board to trigger the re-render
     for (let i = 0; i < input.length; i++) {
-      newBoard[guessNumber - 1][i] = input[i]
-      setBoard(newBoard)
+      if (guessNumber <= 6) {
+        newBoard[guessNumber - 1][i] = input[i]
+        setBoard(newBoard)
+      }
     }
   }, [userInput]); // <-- watch for changes to userInput values otherwise this will loop infinitely
 

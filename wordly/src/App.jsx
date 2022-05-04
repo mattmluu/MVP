@@ -29,7 +29,7 @@ function App() {
   };
 
   const handler = ({ key }) => {
-    if (guessNumber < 7 ) {
+    if (guessNumber <= 6 ) {
       let keyPress = String(key).toUpperCase()
       console.log(keyPress)
       if (userInput.length < 5) {
@@ -49,18 +49,21 @@ function App() {
 
   useEventListener("keydown", handler)
 
-  const changeColors = (coordinate, color) => {
+  const changeColors = (coordinate, result) => {
     //ex: document.getElementById( 'Row2Col2' ).style.backgroundColor = "green"
+
   }
 
   const handleSubmit = () => {
-    if (userInput.length === 5 && guessNumber < 7) {
+    if (userInput.length === 5 && guessNumber <= 6) {
       //hacky solution -- this is necessary otherwise guessNum will increment and break code
       //<7 to stop further submits while <6 to not clear final input & stop Board from using guess num 7
-      if (guessNumber < 6) {
+      if (guessNumber <= 6) {
         setGuessNumber(guessNumber + 1)
         setUserInput('')
       }
+
+
     }
   }
 
