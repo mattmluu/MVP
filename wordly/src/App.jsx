@@ -49,21 +49,24 @@ function App() {
 
   useEventListener("keydown", handler)
 
-  const changeColors = (coordinate, result) => {
+  const changeColor = (coordinate, color) => {
     //ex: document.getElementById( 'Row2Col2' ).style.backgroundColor = "green"
-
+    document.getElementById(coordinate).style.backgroundColor = color;
   }
 
   const handleSubmit = () => {
     if (userInput.length === 5 && guessNumber <= 6) {
-      //hacky solution -- this is necessary otherwise guessNum will increment and break code
-      //<7 to stop further submits while <6 to not clear final input & stop Board from using guess num 7
-      if (guessNumber <= 6) {
-        setGuessNumber(guessNumber + 1)
-        setUserInput('')
+      for (let i = 0; i < userInput.length; i++) {
+        if (userInput[i] === secretWord[i]) {
+          changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(115, 165, 125)')
+        } else if (secretWord.includes(userInput[i])) {
+          changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(190, 90, 75)')
+        } else {
+          changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(25, 25, 30)')
+        }
       }
-
-
+      setGuessNumber(guessNumber + 1)
+      setUserInput('')
     }
   }
 
@@ -83,7 +86,6 @@ function App() {
         >
           Submit Word
         </motion.button>
-
 
       </header>
     </div>

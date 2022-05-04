@@ -38,7 +38,7 @@ function Board({ userInput, guessNumber }) {
 
     //update state of the board to trigger the re-render
     for (let i = 0; i < input.length; i++) {
-      if (guessNumber <= 6) {
+      if (guessNumber <=6) {
         newBoard[guessNumber - 1][i] = input[i]
         setBoard(newBoard)
       }
@@ -54,7 +54,7 @@ function Board({ userInput, guessNumber }) {
             {
               board[rowIndex].map((char, colIndex) =>
                 <motion.span
-                  id={`Row${rowIndex+1}Col${colIndex+1}`}
+                  id={`Row${rowIndex}Col${colIndex}`}
                   className="Coordinate"
                   key={colIndex}
                   whileHover={{ scale: 1.1 }}

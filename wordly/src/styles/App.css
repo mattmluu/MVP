@@ -4,11 +4,20 @@
 
 .App-title {
   background-color: rgb(223, 196, 162);
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: black;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: xx-large;
+  font-stretch: extra-expanded;
+  color: rgb(25, 25, 30);
   margin: auto;
   padding: 0.5em;
 }
+
+/*
+color: rgb(193, 92, 74);
+color: rgb(114, 164, 123);
+color: rgb(25, 25, );
+*/
 
 .App-header {
   background-color: #282c34;
@@ -28,21 +37,21 @@
 }
 
 .Board {
-  margin: auto;
+  margin: 1em 0 1em 0;
 }
 
 .Coordinate {
   border: rgb(225, 220, 210);
   border-style: solid;
-  border-width: 2px;
-  margin: .15em;
-  min-height: 50px;
-  min-width: 50px;
-  border-radius: 1px;
+  border-width: 3px;
+  margin: .2em;
+  min-height: 65px;
+  min-width: 65px;
+  border-radius: 3px;
 }
 
 .Char {
-  margin-top: 5px;
+  margin-top: 15px;
   color: rgb(240, 235, 230);
 }
 
@@ -51,14 +60,18 @@
 }
 
 .Submit-button {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-stretch: expanded;
+  font-weight: 500;
+  color: rgb(25, 25, 30);
   margin-bottom: 8em;
   padding: .2em;
   padding-left: 1em;
   padding-right: 1em;
   font-size: calc(10px + 2vmin);
   background-color: antiquewhite;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 button {
