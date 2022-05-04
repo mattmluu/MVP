@@ -36,6 +36,9 @@ function App() {
     if (keyPress === 'BACKSPACE') {
       setUserInput(userInput.slice(0, -1))
     }
+    if (keyPress === 'ENTER') {
+      handleSubmit()
+    }
   }
 
   useEventListener("keydown", handler)
