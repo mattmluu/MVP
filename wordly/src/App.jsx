@@ -1,12 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useRef } from 'react'
 import { motion } from "framer-motion"
+import wordList from './FakeDB'
 import './styles/App.css'
 import Board from './Board.jsx'
 
 function App() {
   const [userInput, setUserInput] = useState('')
   const [guessNumber, setGuessNumber] = useState(1);
+  const [secretWord, setSecretWord] = useState(
+    wordList[Math.floor(Math.random() * wordList.length)]
+  );
   const chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
                  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
@@ -25,32 +29,38 @@ function App() {
   };
 
   const handler = ({ key }) => {
-    let keyPress = String(key).toUpperCase()
-    console.log(keyPress)
-    if (userInput.length < 5) {
-      if (chars.includes(keyPress)) {
-        let newInput = userInput + keyPress
-        setUserInput(newInput)
+    if (guessNumber < 7 ) {
+      let keyPress = String(key).toUpperCase()
+      console.log(keyPress)
+      if (userInput.length < 5) {
+        if (chars.includes(keyPress)) {
+          let newInput = userInput + keyPress
+          setUserInput(newInput)
+        }
       }
-    }
-    if (keyPress === 'BACKSPACE') {
-      setUserInput(userInput.slice(0, -1))
-    }
-    if (keyPress === 'ENTER') {
-      handleSubmit()
+      if (keyPress === 'BACKSPACE') {
+        setUserInput(userInput.slice(0, -1))
+      }
+      if (keyPress === 'ENTER') {
+        handleSubmit()
+      }
     }
   }
 
   useEventListener("keydown", handler)
 
   const changeColors = (coordinate, color) => {
-    document.getElementById( 'Row2Col2' ).style.backgroundColor = "green"
+    //ex: document.getElementById( 'Row2Col2' ).style.backgroundColor = "green"
   }
 
   const handleSubmit = () => {
-    if (userInput.length === 5 && guessNumber <= 6) {
-      setGuessNumber(guessNumber + 1)
-      setUserInput('')
+    if (userInput.length === 5 && guessNumber < 7) {
+      //hacky solution -- this is necessary otherwise guessNum will increment and break code
+      //<7 to stop further submits while <6 to not clear final input & stop Board from using guess num 7
+      if (guessNumber < 6) {
+        setGuessNumber(guessNumber + 1)
+        setUserInput('')
+      }
     }
   }
 
