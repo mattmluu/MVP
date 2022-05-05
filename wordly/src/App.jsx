@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import axios from 'axios'
 import wordList from './FakeDB'
 import './styles/App.css'
@@ -17,8 +18,8 @@ function App() {
                  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
   useEffect(() => {
-    axios.get('http://localhost:4000/test/server')
-      .then((result) => console.log(result))
+    axios.get('api/word/secret')
+      .then((result) => setSecretWord(result.data))
       .catch((error) => console.log(error))
   }, [])
 
@@ -84,7 +85,18 @@ function App() {
 
         <Letters />
         <Board userInput={userInput} guessNumber={guessNumber}/>
-        <Form />
+        <div className="Right-side-content">
+          <motion.button
+            id="Answer-reveal-button"
+            onClick={() => {}}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Reveal Answer
+          </motion.button>
+          <Form />
+        </div>
+
 
       </header>
     </div>
