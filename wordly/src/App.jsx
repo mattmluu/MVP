@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useRef } from 'react'
-import { motion } from "framer-motion"
+import axios from 'axios'
 import wordList from './FakeDB'
 import './styles/App.css'
 import Board from './Board.jsx'
@@ -15,6 +15,12 @@ function App() {
   );
   const chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
                  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/test/server')
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error))
+  }, [])
 
   const useEventListener = (eventName, handler, element = window) => {
     const savedHandler = useRef()
