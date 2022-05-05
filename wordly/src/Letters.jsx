@@ -4,24 +4,33 @@ import { motion } from "framer-motion"
 
 function Letters() {
   const chars = {
-    col1: ['A','B','C','D','E','F','G','H','I'],
-    col2: ['J','K','L','M','N','O','P','Q','R'],
-    col3: ['S','T','U','V','W','X','Y','Z']
+    row1: ['Q','W','E','R','T','Y','U','I','O','P'],
+    row2: ['A','S','D','F','G','H','J','K','L'],
+    row3: ['Enter','Z','X','C','V','B','N','M','<--']
   }
-  //im lazy
+
   return (
     <div className="Letters">
-      <span>
-        {chars.col1.map((char, index) =>
-        <div id={`${char}`} className="Letter" key={index}>{char}</div>)}
+      <span className="Letters-row">
+        {chars.row1.map((char, index) =>
+        <motion.div id={`${char}`} className="Letter" key={index}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >{char}</motion.div>)}
       </span>
-      <span>
-        {chars.col2.map((char, index) =>
-        <div id={`${char}`} className="Letter" key={index}>{char}</div>)}
+      <span className="Letters-row">
+        {chars.row2.map((char, index) =>
+        <motion.div id={`${char}`} className="Letter" key={index}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >{char}</motion.div>)}
       </span>
-      <span>
-        {chars.col3.map((char, index) =>
-        <div id={`${char}`} className="Letter" key={index}>{char}</div>)}
+      <span className="Letters-row">
+        {chars.row3.map((char, index) =>
+        <motion.div id={`${char}`} className="Letter" key={index}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >{char}</motion.div>)}
       </span>
     </div>
   )

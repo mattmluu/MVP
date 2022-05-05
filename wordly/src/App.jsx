@@ -11,6 +11,7 @@ import Form from './Form.jsx'
 function App() {
   const [userInput, setUserInput] = useState('')
   const [guessNumber, setGuessNumber] = useState(1);
+  const [reveal, setReveal] = useState(false);
   const [secretWord, setSecretWord] = useState(
     wordList[Math.floor(Math.random() * wordList.length)]
   );
@@ -58,8 +59,8 @@ function App() {
 
   useEventListener("keydown", handler)
 
-  const changeColor = (coordinate, color) => {
-    document.getElementById(coordinate).style.backgroundColor = color;
+  const changeColor = (divId, color) => {
+    document.getElementById(divId).style.backgroundColor = color;
   }
 
   const handleEnter = () => {
@@ -67,10 +68,13 @@ function App() {
       for (let i = 0; i < userInput.length; i++) {
         if (userInput[i] === secretWord[i]) {
           changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(115, 165, 125)')
+          changeColor(userInput[i], 'rgb(25, 25, 30)')
         } else if (secretWord.includes(userInput[i])) {
           changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(190, 90, 75)')
+          changeColor(userInput[i], 'rgb(25, 25, 30)')
         } else {
           changeColor(`Row${guessNumber - 1}Col${i}`, 'rgb(25, 25, 30)')
+          changeColor(userInput[i], 'rgb(25, 25, 30)')
         }
       }
       setGuessNumber(guessNumber + 1)
@@ -83,17 +87,20 @@ function App() {
       <h1 className="App-title">WORDLY</h1>
       <header className="Main-Content">
 
-        <Letters />
-        <Board userInput={userInput} guessNumber={guessNumber}/>
+        <div className="Left-side-content">
+          <Board userInput={userInput} guessNumber={guessNumber}/>
+          <Letters />
+        </div>
+
         <div className="Right-side-content">
-          <motion.button
+          <motion.div
             id="Answer-reveal-button"
-            onClick={() => {}}
+            onClick={() => {setReveal(true)}}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Reveal Answer
-          </motion.button>
+            {reveal ? secretWord : 'Reveal Answer'}
+          </motion.div>
           <Form />
         </div>
 
